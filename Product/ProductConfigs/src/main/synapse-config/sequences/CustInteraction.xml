@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CustInteraction" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <payloadFactory media-type="json">
+        <format>{&#xd;
+    "accountID"&#xd;
+: &#xd;
+null,&#xd;
+"customerID"&#xd;
+: &#xd;
+"$1",&#xd;
+"partnerID"&#xd;
+: &#xd;
+"$2",&#xd;
+"tenantID"&#xd;
+: &#xd;
+"$3"&#xd;
+}</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('uri.var.custID')"/>
+            <arg evaluator="xml" expression="get-property('uri.var.partnerID')"/>
+            <arg evaluator="xml" expression="get-property('uri.var.tenantID')"/>
+            <arg evaluator="xml" expression="get-property('uri.var.accountID')"/>
+        </args>
+    </payloadFactory>
+    <call>
+        <endpoint key="CustInteractionEP"/>
+    </call>
+    <filter regex="No data found." source="//statusMessage">
+        <then>
+            <payloadFactory media-type="json">
+                <format>&#xd;
+					{&#xd;&#xd;
+					"Message" : "No Customer Interactions"&#xd;&#xd;
+					}&#xd;
+				</format>
+                <args/>
+            </payloadFactory>
+            <property description="custInteraction" expression="json-eval($)" name="custInteraction" scope="default" type="STRING"/>
+        </then>
+        <else>
+            <property description="custInteraction" expression="json-eval($.result)" name="custInteraction" scope="default" type="STRING"/>
+        </else>
+    </filter>
+</sequence>

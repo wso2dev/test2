@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="RaptrLogin" groupId="com.example.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/RaptrLogin.xml</file>
+    </artifact>
+    <artifact name="CustLoginEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/CustLoginEP.xml</file>
+    </artifact>
+    <artifact name="CustRequestsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/CustRequestsEP.xml</file>
+    </artifact>
+    <artifact name="CustBillsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/CustBillsEP.xml</file>
+    </artifact>
+    <artifact name="CustTransactionsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/CustTransactionsEP.xml</file>
+    </artifact>
+    <artifact name="CustBillingAccDetailsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/CustBillingAccDetailsEP.xml</file>
+    </artifact>
+    <artifact name="CustInfoEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/CustInfoEP.xml</file>
+    </artifact>
+    <artifact name="CustAccountsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/CustAccountsEP.xml</file>
+    </artifact>
+    <artifact name="UserLogin" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/UserLogin.xml</file>
+    </artifact>
+    <artifact name="CustInfo" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/CustInfo.xml</file>
+    </artifact>
+    <artifact name="CustRequests" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/CustRequests.xml</file>
+    </artifact>
+    <artifact name="CustBills" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/CustBills.xml</file>
+    </artifact>
+    <artifact name="CustTransactions" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/CustTransactions.xml</file>
+    </artifact>
+    <artifact name="FaultSeq" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/FaultSeq.xml</file>
+    </artifact>
+    <artifact name="CustBillingAccDetails" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/CustBillingAccDetails.xml</file>
+    </artifact>
+    <artifact name="CustAccounts" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/CustAccounts.xml</file>
+    </artifact>
+    <artifact name="CustBalancesShareEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/CustBalancesShareEP.xml</file>
+    </artifact>
+    <artifact name="CustBalancesShare" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/CustBalancesShare.xml</file>
+    </artifact>
+    <artifact name="CustInteractionEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/CustInteractionEP.xml</file>
+    </artifact>
+    <artifact name="CustInteraction" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/CustInteraction.xml</file>
+    </artifact>
+    <artifact name="CustNotificationsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/CustNotificationsEP.xml</file>
+    </artifact>
+    <artifact name="CustNotifications" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/CustNotifications.xml</file>
+    </artifact>
+</artifacts>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CustTransactions" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <log level="custom">
+        <property expression="get-property('uri.var.customerAccountID')" name="LOG CUSTOMER ACCOUNT ID"/>
+        <property expression="get-property('uri.var.nodeID')" name="LOG CUSTOMER NODE ID"/>
+    </log>
+    <call>
+        <endpoint key="CustTransactionsEP"/>
+    </call>
+    <filter regex="No data found." source="//statusMessage">
+        <then>
+            <payloadFactory media-type="json">
+                <format>&#xd;
+					{&#xd;&#xd;
+					"Message" : "No Customer Transactions"&#xd;&#xd;
+					}&#xd;
+				</format>
+                <args/>
+            </payloadFactory>
+            <property description="custTransactions" expression="json-eval($)" name="custTransactions" scope="default" type="STRING"/>
+        </then>
+        <else>
+            <property description="custTransactions" expression="json-eval($.result)" name="custTransactions" scope="default" type="STRING"/>
+        </else>
+    </filter>
+</sequence>

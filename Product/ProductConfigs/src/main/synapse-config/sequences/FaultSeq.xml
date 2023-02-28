@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="FaultSeq" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property description="ERROR_MESSAGE" expression="$ctx:ERROR_MESSAGE" name="ERROR_MESSAGE" scope="default" type="STRING"/>
+    <property description="ERROR_EXCEPTION" expression="$ctx:ERROR_EXCEPTION" name="ERROR_EXCEPTION" scope="default" type="STRING"/>
+    <log level="custom" separator=",">
+        <property expression="get-property('ERROR_MESSAGE')" name="ErrorMsg"/>
+    </log>
+    <payloadFactory media-type="text">
+        <format>"An unexpected Error occured",&#xd;
+$1,&#xd;
+$2</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('ERROR_MESSAGE')"/>
+            <arg evaluator="xml" expression="get-property('ERROR_EXCEPTION')"/>
+        </args>
+    </payloadFactory>
+    <respond/>
+</sequence>

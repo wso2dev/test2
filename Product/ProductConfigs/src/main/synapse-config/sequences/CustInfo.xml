@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CustInfo" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="CustInfoEP"/>
+    </call>
+    <propertyGroup>
+        <property expression="json-eval($.result)" name="custInfo" scope="default" type="STRING"/>
+        <property expression="json-eval($.result[0].addressList[0].customerAccountID)" name="uri.var.customerAccountID" scope="default" type="STRING"/>
+        <property expression="json-eval($.result[0].addressList[0].nodeID)" name="uri.var.nodeID" scope="default" type="STRING"/>
+    </propertyGroup>
+</sequence>

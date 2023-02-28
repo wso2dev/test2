@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CustNotifications" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="CustNotificationsEP"/>
+    </call>
+    <filter regex="No data found." source="//statusMessage">
+        <then>
+            <payloadFactory media-type="json">
+                <format>&#xd;
+					{&#xd;&#xd;
+					"Message" : "No Customer Notifications"&#xd;&#xd;
+					}&#xd;
+				</format>
+                <args/>
+            </payloadFactory>
+            <property description="custNotifications" expression="json-eval($)" name="custNotifications" scope="default" type="STRING"/>
+        </then>
+        <else>
+            <property description="custNotifications" expression="json-eval($.result)" name="custNotifications" scope="default" type="STRING"/>
+        </else>
+    </filter>
+</sequence>

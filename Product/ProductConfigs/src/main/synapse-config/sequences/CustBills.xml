@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CustBills" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="CustBillsEP"/>
+    </call>
+    <filter regex="No data found." source="//statusMessage">
+        <then>
+            <payloadFactory media-type="json">
+                <format>&#xd;
+					{&#xd;&#xd;
+					"Message" : "No Customer Bills"&#xd;&#xd;
+					}&#xd;
+				</format>
+                <args/>
+            </payloadFactory>
+            <property description="custBills" expression="json-eval($)" name="custBills" scope="default" type="STRING"/>
+        </then>
+        <else>
+            <property description="custBills" expression="json-eval($.result)" name="custBills" scope="default" type="STRING"/>
+        </else>
+    </filter>
+</sequence>

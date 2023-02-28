@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CustBillingAccDetails" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="CustBillingAccDetailsEP"/>
+    </call>
+    <property description="billingId" expression="json-eval($.result[0].billingAccountID)" name="uri.var.billingID" scope="default" type="STRING"/>
+    <log description="log billing id" level="custom">
+        <property expression="get-property('uri.var.billingID')" name="BillingID"/>
+    </log>
+    <property description="billingAccDetails" expression="json-eval($.result)" name="billingAccDetails" scope="default" type="STRING"/>
+</sequence>

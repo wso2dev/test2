@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CustAccounts" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="CustAccountsEP"/>
+    </call>
+    <property description="custAccounts" expression="json-eval($.result)" name="custAccounts" scope="default" type="STRING"/>
+</sequence>

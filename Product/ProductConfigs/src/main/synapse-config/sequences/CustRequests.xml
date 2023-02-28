@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CustRequests" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <payloadFactory media-type="json">
+        <format>{"customerID"&#xd;
+: &#xd;
+"$1",&#xd;
+"partnerID"&#xd;
+: &#xd;
+"$2",&#xd;
+"tenantID"&#xd;
+: &#xd;
+"$3"}</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('uri.var.custID')"/>
+            <arg evaluator="xml" expression="get-property('uri.var.partnerID')"/>
+            <arg evaluator="xml" expression="get-property('uri.var.tenantID')"/>
+        </args>
+    </payloadFactory>
+    <call>
+        <endpoint key="CustRequestsEP"/>
+    </call>
+    <property description="custReq" expression="json-eval($.result)" name="custReq" scope="default" type="STRING"/>
+</sequence>
