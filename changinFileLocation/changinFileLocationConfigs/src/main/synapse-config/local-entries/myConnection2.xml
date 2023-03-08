@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<localEntry xmlns="http://ws.apache.org/ns/synapse" key="myConnection2">
+    <file.init>
+        <workingDir>E:\</workingDir>
+        <name>myConnection2</name>
+        <fileLockScheme>Cluster</fileLockScheme>
+        <connectionType>LOCAL</connectionType>
+    </file.init>
+</localEntry>

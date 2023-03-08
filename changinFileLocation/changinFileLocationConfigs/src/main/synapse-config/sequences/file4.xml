@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="file4" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <file.copy configKey="changeConnection">
+        <sourcePath>\ajay\Book1</sourcePath>
+        <targetPath>\myFiles</targetPath>
+        <sourceFilePattern>.*\*</sourceFilePattern>
+        <includeParent>true</includeParent>
+        <overwrite>true</overwrite>
+    </file.copy>
+    <log level="custom">
+        <property expression="$body" name="sdf"/>
+    </log>
+    <respond/>
+</sequence>
