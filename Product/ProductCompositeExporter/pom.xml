@@ -9,30 +9,50 @@
   <name>ProductCompositeExporter</name>
   <description>ProductCompositeExporter</description>
   <properties>
-    <com.example.sequence_._CustNotifications>capp/EnterpriseServiceBus</com.example.sequence_._CustNotifications>
-    <com.example.sequence_._CustBillingAccDetails>capp/EnterpriseServiceBus</com.example.sequence_._CustBillingAccDetails>
-    <com.example.sequence_._FaultSeq>capp/EnterpriseServiceBus</com.example.sequence_._FaultSeq>
-    <com.example.sequence_._CustRequests>capp/EnterpriseServiceBus</com.example.sequence_._CustRequests>
-    <com.example.sequence_._CustTransactions>capp/EnterpriseServiceBus</com.example.sequence_._CustTransactions>
-    <com.example.endpoint_._CustInfoEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustInfoEP>
-    <com.example.endpoint_._CustInteractionEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustInteractionEP>
-    <com.example.sequence_._CustBalancesShare>capp/EnterpriseServiceBus</com.example.sequence_._CustBalancesShare>
-    <com.example.endpoint_._CustNotificationsEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustNotificationsEP>
-    <com.example.endpoint_._CustAccountsEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustAccountsEP>
-    <com.example.endpoint_._CustRequestsEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustRequestsEP>
-    <com.example.sequence_._CustInfo>capp/EnterpriseServiceBus</com.example.sequence_._CustInfo>
-    <com.example.endpoint_._CustTransactionsEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustTransactionsEP>
-    <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,service/rule=aar,synapse/message-store=xml,event/stream=json,service/meta=xml,datasource/datasource=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,wso2/gadget=dar,synapse/api=xml,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
-    <com.example.sequence_._CustBills>capp/EnterpriseServiceBus</com.example.sequence_._CustBills>
-    <com.example.sequence_._CustInteraction>capp/EnterpriseServiceBus</com.example.sequence_._CustInteraction>
-    <com.example.endpoint_._CustLoginEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustLoginEP>
-    <com.example.endpoint_._custAddress>capp/EnterpriseServiceBus</com.example.endpoint_._custAddress>
-    <com.example.sequence_._UserLogin>capp/EnterpriseServiceBus</com.example.sequence_._UserLogin>
-    <com.example.sequence_._CustAccounts>capp/EnterpriseServiceBus</com.example.sequence_._CustAccounts>
-    <com.example.endpoint_._CustBillsEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustBillsEP>
-    <com.example.endpoint_._CustBillingAccDetailsEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustBillingAccDetailsEP>
+    <com.example.endpoint_._AccDevicesEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccDevicesEP>
     <com.example.endpoint_._CustBalancesShareEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustBalancesShareEP>
+    <com.example.sequence_._CustBillingAccDetails>capp/EnterpriseServiceBus</com.example.sequence_._CustBillingAccDetails>
+    <com.example.endpoint_._CustBillingAccDetailsEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustBillingAccDetailsEP>
+    <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,service/rule=aar,synapse/message-store=xml,event/stream=json,service/meta=xml,datasource/datasource=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,wso2/gadget=dar,synapse/api=xml,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
+    <com.example.endpoint_._CustTransactionsEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustTransactionsEP>
+    <com.example.endpoint_._CustRequestsEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustRequestsEP>
+    <com.example.endpoint_._AccUsageEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccUsageEP>
+    <com.example.sequence_._CustRequests>capp/EnterpriseServiceBus</com.example.sequence_._CustRequests>
+    <com.example.sequence_._CustInfo>capp/EnterpriseServiceBus</com.example.sequence_._CustInfo>
     <com.example.api_._RaptrLogin>capp/EnterpriseServiceBus</com.example.api_._RaptrLogin>
+    <com.example.endpoint_._CustLoginEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustLoginEP>
+    <com.example.endpoint_._AccComparewithEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccComparewithEP>
+    <com.example.endpoint_._CustAccountsEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustAccountsEP>
+    <com.example.endpoint_._AccInteractionEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccInteractionEP>
+    <com.example.endpoint_._PrepaidReplenishmentEP>capp/EnterpriseServiceBus</com.example.endpoint_._PrepaidReplenishmentEP>
+    <com.example.endpoint_._AccDocumentsEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccDocumentsEP>
+    <com.example.endpoint_._AccTransactionsEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccTransactionsEP>
+    <com.example.endpoint_._CustBillsEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustBillsEP>
+    <com.example.sequence_._CustAccounts>capp/EnterpriseServiceBus</com.example.sequence_._CustAccounts>
+    <com.example.endpoint_._AccsOfParticularBillingIDEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccsOfParticularBillingIDEP>
+    <com.example.sequence_._PrepaidAcc360Seq>capp/EnterpriseServiceBus</com.example.sequence_._PrepaidAcc360Seq>
+    <com.example.endpoint_._AccCouponsEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccCouponsEP>
+    <com.example.endpoint_._AccContractsEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccContractsEP>
+    <com.example.endpoint_._AccOwnershipDetailsEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccOwnershipDetailsEP>
+    <com.example.endpoint_._AccRequestsEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccRequestsEP>
+    <com.example.endpoint_._CustNotificationsEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustNotificationsEP>
+    <com.example.sequence_._CustTransactions>capp/EnterpriseServiceBus</com.example.sequence_._CustTransactions>
+    <com.example.sequence_._UserLogin>capp/EnterpriseServiceBus</com.example.sequence_._UserLogin>
+    <com.example.sequence_._CustBillingAccsIteration>capp/EnterpriseServiceBus</com.example.sequence_._CustBillingAccsIteration>
+    <com.example.sequence_._FaultSeq>capp/EnterpriseServiceBus</com.example.sequence_._FaultSeq>
+    <com.example.endpoint_._custAddress>capp/EnterpriseServiceBus</com.example.endpoint_._custAddress>
+    <com.example.endpoint_._CustInteractionEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustInteractionEP>
+    <com.example.sequence_._CustInteraction>capp/EnterpriseServiceBus</com.example.sequence_._CustInteraction>
+    <com.example.endpoint_._CustInfoEP>capp/EnterpriseServiceBus</com.example.endpoint_._CustInfoEP>
+    <com.example.sequence_._CustNotifications>capp/EnterpriseServiceBus</com.example.sequence_._CustNotifications>
+    <com.example.sequence_._CustBills>capp/EnterpriseServiceBus</com.example.sequence_._CustBills>
+    <com.example.endpoint_._AutoDebitEP>capp/EnterpriseServiceBus</com.example.endpoint_._AutoDebitEP>
+    <com.example.endpoint_._AccRelationsEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccRelationsEP>
+    <com.example.endpoint_._AccOrdersEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccOrdersEP>
+    <com.example.endpoint_._AccNotificationsEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccNotificationsEP>
+    <com.example.endpoint_._AccInfoEP>capp/EnterpriseServiceBus</com.example.endpoint_._AccInfoEP>
+    <com.example.sequence_._CustBalancesShare>capp/EnterpriseServiceBus</com.example.sequence_._CustBalancesShare>
+    <com.example.sequence_._Acc360Seq>capp/EnterpriseServiceBus</com.example.sequence_._Acc360Seq>
   </properties>
   <dependencies>
     <dependency>
@@ -44,6 +64,102 @@
     <dependency>
       <groupId>com.example.api</groupId>
       <artifactId>RaptrLogin</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccComparewithEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccContractsEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccCouponsEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccDevicesEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccDocumentsEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccInfoEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccInteractionEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccNotificationsEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccOrdersEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccOwnershipDetailsEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccRelationsEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccRequestsEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccTransactionsEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccUsageEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AccsOfParticularBillingIDEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>AutoDebitEP</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
@@ -108,6 +224,18 @@
       <type>xml</type>
     </dependency>
     <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>PrepaidReplenishmentEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.sequence</groupId>
+      <artifactId>Acc360Seq</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
       <groupId>com.example.sequence</groupId>
       <artifactId>CustAccounts</artifactId>
       <version>1.0.0</version>
@@ -122,6 +250,12 @@
     <dependency>
       <groupId>com.example.sequence</groupId>
       <artifactId>CustBillingAccDetails</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.sequence</groupId>
+      <artifactId>CustBillingAccsIteration</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
@@ -164,6 +298,12 @@
     <dependency>
       <groupId>com.example.sequence</groupId>
       <artifactId>FaultSeq</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.sequence</groupId>
+      <artifactId>PrepaidAcc360Seq</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>

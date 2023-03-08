@@ -65,4 +65,64 @@
     <artifact name="CustNotifications" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/CustNotifications.xml</file>
     </artifact>
+    <artifact name="AccInfoEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccInfoEP.xml</file>
+    </artifact>
+    <artifact name="AccDocumentsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccDocumentsEP.xml</file>
+    </artifact>
+    <artifact name="AccDevicesEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccDevicesEP.xml</file>
+    </artifact>
+    <artifact name="AccRequestsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccRequestsEP.xml</file>
+    </artifact>
+    <artifact name="AccTransactionsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccTransactionsEP.xml</file>
+    </artifact>
+    <artifact name="AccCouponsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccCouponsEP.xml</file>
+    </artifact>
+    <artifact name="AccRelationsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccRelationsEP.xml</file>
+    </artifact>
+    <artifact name="AccOwnershipDetailsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccOwnershipDetailsEP.xml</file>
+    </artifact>
+    <artifact name="AccOrdersEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccOrdersEP.xml</file>
+    </artifact>
+    <artifact name="AccComparewithEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccComparewithEP.xml</file>
+    </artifact>
+    <artifact name="AccInteractionEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccInteractionEP.xml</file>
+    </artifact>
+    <artifact name="AccNotificationsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccNotificationsEP.xml</file>
+    </artifact>
+    <artifact name="AccsOfParticularBillingIDEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccsOfParticularBillingIDEP.xml</file>
+    </artifact>
+    <artifact name="CustBillingAccsIteration" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/CustBillingAccsIteration.xml</file>
+    </artifact>
+    <artifact name="Acc360Seq" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/Acc360Seq.xml</file>
+    </artifact>
+    <artifact name="AccContractsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccContractsEP.xml</file>
+    </artifact>
+    <artifact name="AutoDebitEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AutoDebitEP.xml</file>
+    </artifact>
+    <artifact name="AccUsageEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/AccUsageEP.xml</file>
+    </artifact>
+    <artifact name="PrepaidAcc360Seq" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/PrepaidAcc360Seq.xml</file>
+    </artifact>
+    <artifact name="PrepaidReplenishmentEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/PrepaidReplenishmentEP.xml</file>
+    </artifact>
 </artifacts>

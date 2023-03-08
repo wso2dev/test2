@@ -2,18 +2,18 @@
 <sequence name="UserLogin" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
     <property description="uri.var.custID" expression="json-eval($.customerID)" name="uri.var.custID" scope="default" type="STRING"/>
     <log description="uri.var.custID" level="custom">
-        <property expression="get-property('uri.var.custID')" name="custID"/>
+        <property expression="get-property('uri.var.custID')" name="uri.var.custID"/>
     </log>
     <call>
         <endpoint key="CustLoginEP"/>
     </call>
     <property description="uri.var.partnerID" expression="json-eval($.userMenuItemsRestDTO.userObject.partnerID)" name="uri.var.partnerID" scope="default" type="STRING"/>
-    <log level="custom">
-        <property expression="get-property('uri.var.partnerID')" name="partnerID"/>
+    <log description="uri.var.partnerID" level="custom">
+        <property expression="get-property('uri.var.partnerID')" name="uri.var.partnerID"/>
     </log>
     <property description="uri.var.tenantID" expression="json-eval($.userMenuItemsRestDTO.userObject.tenantID)" name="uri.var.tenantID" scope="default" type="STRING"/>
-    <log level="custom">
-        <property expression="get-property('uri.var.tenantID')" name="tenantID"/>
+    <log description="uri.var.tenantID" level="custom">
+        <property expression="get-property('uri.var.tenantID')" name="uri.var.tenantID"/>
     </log>
     <propertyGroup description="userObj">
         <property expression="json-eval($.userMenuItemsRestDTO.userObject.authToken)" name="authToken" scope="default" type="STRING"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <api context="/raptr" name="RaptrLogin" xmlns="http://ws.apache.org/ns/synapse">
-    <resource methods="POST" url-mapping="/login/backup">
+    <resource faultSequence="FaultSeq" methods="POST" url-mapping="/login">
         <inSequence>
             <sequence key="UserLogin"/>
             <sequence key="CustInfo"/>
@@ -8,23 +8,25 @@
             <sequence key="CustBills"/>
             <sequence key="CustTransactions"/>
             <sequence key="CustBillingAccDetails"/>
-            <sequence key="CustAccounts"/>
             <sequence key="CustBalancesShare"/>
             <sequence key="CustInteraction"/>
             <sequence key="CustNotifications"/>
+            <sequence key="CustBillingAccsIteration"/>
+            <sequence key="CustAccounts"/>
             <payloadFactory media-type="json">
                 <format>{"customer360":{&#xd;
 "CustomerInfo":$1,&#xd;
 "CustomerRequests":$2,&#xd;
 "CustomerBills":$3,&#xd;
-"CustomerBillingDetails":$4,&#xd;
-
-"CustomerAccounts":$5,&#xd;
 
 "CustomerTransactionDetails":$6,&#xd;
+"CustomerBillingAccDetails":$4,&#xd;
 "CustomerBalancesShare":$7,&#xd;
 "CustomerInteraction":$8,&#xd;
-"CustomerNotifications":$9&#xd;
+"CustomerNotifications":$9,&#xd;
+
+"CustomerAccounts":[$5],&#xd;
+"CustomerEachAcc360":$10&#xd;
 }&#xd;
 }</format>
                 <args>
@@ -32,16 +34,23 @@
                     <arg evaluator="xml" expression="get-property('custReq')"/>
                     <arg evaluator="xml" expression="get-property('custBills')"/>
                     <arg evaluator="xml" expression="get-property('billingAccDetails')"/>
-                    <arg evaluator="xml" expression="get-property('custAccounts')"/>
+                    <arg evaluator="xml" expression="get-property('operation','concat-data')"/>
                     <arg evaluator="xml" expression="get-property('custTransactions')"/>
                     <arg evaluator="xml" expression="get-property('custBalancesShare')"/>
                     <arg evaluator="xml" expression="get-property('custInteraction')"/>
                     <arg evaluator="xml" expression="get-property('custNotifications')"/>
+                    <arg evaluator="xml" expression="get-property('operation','allAccs')"/>
                 </args>
             </payloadFactory>
             <respond/>
         </inSequence>
         <outSequence/>
-        <faultSequence/>
+    </resource>
+    <resource faultSequence="FaultSeq" methods="POST" url-mapping="/customer-accounts">
+        <inSequence>
+            <sequence key="UserLogin"/>
+            <sequence key="CustAccounts"/>
+        </inSequence>
+        <outSequence/>
     </resource>
 </api>

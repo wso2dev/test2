@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CustBillingAccsIteration" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory description="custBillingAccs" media-type="json">
+        <format>$1</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('billingAccDetails')"/>
+        </args>
+    </payloadFactory>
+    <log level="custom">
+        <property name="BillingAccsIteration" value="calling.."/>
+    </log>
+    <filter regex="0.0" source="get-property('custBillingAccsCount')">
+        <then>
+            <log level="custom">
+                <property name="Then" value="No Billing Accs"/>
+            </log>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+"Message":"There are no Billing Accounts for this customer"&#xd;
+}</format>
+                <args/>
+            </payloadFactory>
+            <property description="concat-data" expression="json-eval($)" name="concat-data" scope="default" type="STRING"/>
+        </then>
+        <else>
+            <iterate expression="//result" id="IterateAccs" sequential="true">
+                <target>
+                    <sequence>
+                        <propertyGroup>
+                            <property expression="//billingAccountID" name="uri.var.billingID" scope="default" type="STRING"/>
+                            <property expression="//nodeID" name="uri.var.nodeID" scope="default" type="STRING"/>
+                        </propertyGroup>
+                        <log description="billingID&amp;nodeID" level="custom">
+                            <property expression="get-property('uri.var.billingID')" name="uri.var.billingID"/>
+                            <property expression="get-property('uri.var.nodeID')" name="uri.var.nodeID"/>
+                        </log>
+                        <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+                        <call>
+                            <endpoint key="AccsOfParticularBillingIDEP"/>
+                        </call>
+                        <filter regex="No data found." source="//statusMessage">
+                            <then>
+                                <payloadFactory media-type="json">
+                                    <format>{
+"$1":{
+"Message" :"No customer accounts for this billing account"
+}
+
+}</format>
+                                    <args>
+                                        <arg evaluator="xml" expression="fn:concat('Accounts of BillingID: ',get-property('uri.var.billingID'))"/>
+                                    </args>
+                                </payloadFactory>
+                                <property description="data" expression="json-eval($)" name="data" scope="default" type="STRING"/>
+                            </then>
+                            <else>
+                                <payloadFactory media-type="json">
+                                    <format>{&#xd;
+"$1":$2&#xd;
+&#xd;
+}</format>
+                                    <args>
+                                        <arg evaluator="xml" expression="fn:concat('Accounts of BillingID: ',get-property('uri.var.billingID'))"/>
+                                        <arg evaluator="json" expression="$.result"/>
+                                    </args>
+                                </payloadFactory>
+                                <property description="data" expression="json-eval($)" name="data" scope="default" type="STRING"/>
+                            </else>
+                        </filter>
+                        <filter regex="false" source="boolean(get-property('operation','concat-data'))">
+                            <then>
+                                <property description="concat-data" expression="get-property('data')" name="concat-data" scope="operation" type="STRING"/>
+                            </then>
+                            <else>
+                                <property description="concat-data" expression="fn:concat(get-property('operation','concat-data'),',',get-property('data'),)" name="concat-data" scope="operation" type="STRING"/>
+                            </else>
+                        </filter>
+                    </sequence>
+                </target>
+            </iterate>
+            <log level="custom">
+                <property name="BillingAccIteration" value="completed"/>
+            </log>
+            <aggregate id="IterateAccs">
+                <completeCondition>
+                    <messageCount max="{get-property('custBillingAccsCount')}" min="{get-property('custBillingAccsCount')}"/>
+                </completeCondition>
+                <onComplete aggregateElementType="root" expression="json-eval($)">
+                    <payloadFactory media-type="json">
+                        <format>{&#xd;
+$1&#xd;
+}</format>
+                        <args>
+                            <arg evaluator="xml" expression="get-property('operation','concat-data')"/>
+                        </args>
+                    </payloadFactory>
+                </onComplete>
+            </aggregate>
+        </else>
+    </filter>
+</sequence>

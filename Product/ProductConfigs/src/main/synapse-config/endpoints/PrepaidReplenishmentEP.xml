@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="PrepaidReplenishmentEP" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="get" uri-template="http://172.16.110.239:8086/oms/getReplenishmentDetails?accountID={uri.var.accountID}&amp;customerID={uri.var.custID}&amp;tenantID={uri.var.tenantID}&amp;flag=2">
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1.0</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+    </http>
+</endpoint>

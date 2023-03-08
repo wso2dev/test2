@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="AccUsageEP" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="get" uri-template="http://172.16.110.239:8095/ocs/getChargesData?tenantID={uri.var.tenantID}&amp;accountType={uri.var.accountType}&amp;externalID={uri.var.externalID}&amp;accountID={uri.var.accountID}&amp;accountServices={uri.var.serviceID}&amp;customerID={uri.var.custID}&amp;ratePlanID={uri.var.ratePlanID}">
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1.0</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+    </http>
+</endpoint>

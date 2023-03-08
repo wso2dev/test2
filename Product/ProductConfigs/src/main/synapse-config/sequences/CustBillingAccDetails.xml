@@ -4,9 +4,9 @@
     <call>
         <endpoint key="CustBillingAccDetailsEP"/>
     </call>
-    <property description="billingId" expression="json-eval($.result[0].billingAccountID)" name="uri.var.billingID" scope="default" type="STRING"/>
-    <log description="log billing id" level="custom">
-        <property expression="get-property('uri.var.billingID')" name="BillingID"/>
+    <property description="custBillingAccsCount" expression="count(//billingAccountID)" name="custBillingAccsCount" scope="default" type="STRING"/>
+    <log description="custBillingAccsCount" level="custom">
+        <property expression="get-property('custBillingAccsCount')" name="custBillingAccsCount"/>
     </log>
-    <property description="billingAccDetails" expression="json-eval($.result)" name="billingAccDetails" scope="default" type="STRING"/>
+    <property description="billingAccDetails" expression="json-eval($)" name="billingAccDetails" scope="default" type="STRING"/>
 </sequence>

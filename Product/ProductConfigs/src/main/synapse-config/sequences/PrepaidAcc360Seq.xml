@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="PrepaidAcc360Seq" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="AccInfoEP"/>
+    </call>
+    <propertyGroup description="accInfo,uri.var.accountType,uri.var.externalID">
+        <property expression="json-eval($.result[0].externalID)" name="uri.var.externalID" scope="default" type="STRING"/>
+        <property expression="json-eval($.result[0].customerAccountType)" name="uri.var.accountType" scope="default" type="STRING"/>
+        <property expression="json-eval($.result)" name="accInfo" scope="default" type="STRING"/>
+    </propertyGroup>
+    <log description="uri.var.accountType, uri.var.externalID" level="custom">
+        <property expression="get-property('uri.var.accountType')" name="uri.var.accountType"/>
+        <property expression="get-property('uri.var.externalID')" name="uri.var.externalID"/>
+    </log>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="AccDocumentsEP"/>
+    </call>
+    <property description="accDoc" expression="json-eval($.result)" name="accDoc" scope="default" type="STRING"/>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="AccContractsEP"/>
+    </call>
+    <propertyGroup description="accContracts,uri.var.serviceID,uri.var.ratePlanID">
+        <property expression="json-eval($.result[0].ratePlanID)" name="uri.var.ratePlanID" scope="default" type="STRING"/>
+        <property expression="json-eval($.result[0].serviceID)" name="uri.var.serviceID" scope="default" type="STRING"/>
+        <property expression="json-eval($.result)" name="accContracts" scope="default" type="STRING"/>
+    </propertyGroup>
+    <log level="custom">
+        <property expression="get-property('uri.var.serviceID')" name="uri.var.serviceID"/>
+        <property expression="get-property('uri.var.ratePlanID')" name="uri.var.ratePlanID"/>
+    </log>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="AccUsageEP"/>
+    </call>
+    <propertyGroup description="accUsage">
+        <property expression="json-eval($)" name="accUsage" scope="default" type="STRING"/>
+    </propertyGroup>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="AccDevicesEP"/>
+    </call>
+    <property description="accDevices" expression="json-eval($.result)" name="accDevices" scope="default" type="STRING"/>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <payloadFactory media-type="json">
+        <format>{&#xd;
+"accountID"&#xd;
+: &#xd;
+"$1",&#xd;
+"partnerID"&#xd;
+: &#xd;
+"$2",&#xd;
+"tenantID"&#xd;
+: &#xd;
+"$3"&#xd;
+&#xd;
+&#xd;
+}</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('uri.var.accountID')"/>
+            <arg evaluator="xml" expression="get-property('uri.var.partnerID')"/>
+            <arg evaluator="xml" expression="get-property('uri.var.tenantID')"/>
+        </args>
+    </payloadFactory>
+    <call>
+        <endpoint key="AccRequestsEP"/>
+    </call>
+    <property description="accRequests" expression="json-eval($)" name="accRequests" scope="default" type="STRING"/>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="AccTransactionsEP"/>
+    </call>
+    <property description="accTransactions" expression="json-eval($)" name="accTransactions" scope="default" type="STRING"/>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <payloadFactory media-type="json">
+        <format>{&#xd;
+"accountID"&#xd;
+: &#xd;
+"$1",&#xd;
+"accountName"&#xd;
+: &#xd;
+"$2",&#xd;
+"tenantID"&#xd;
+: &#xd;
+"$3"&#xd;
+&#xd;
+&#xd;
+}</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('uri.var.accountID')"/>
+            <arg evaluator="xml" expression="get-property('uri.var.accountName')"/>
+            <arg evaluator="xml" expression="get-property('uri.var.tenantID')"/>
+        </args>
+    </payloadFactory>
+    <call>
+        <endpoint key="AccCouponsEP"/>
+    </call>
+    <property description="accCoupons" expression="json-eval($)" name="accCoupons" scope="default" type="STRING"/>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="AccRelationsEP"/>
+    </call>
+    <property description="accRelations" expression="json-eval($)" name="accRelations" scope="default" type="STRING"/>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="PrepaidReplenishmentEP"/>
+    </call>
+    <property description="accReplenishment" expression="json-eval($.result)" name="accReplenishment" scope="default" type="STRING"/>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="AccOwnershipDetailsEP"/>
+    </call>
+    <property description="accOwnership" expression="json-eval($)" name="accOwnership" scope="default" type="STRING"/>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="AccOrdersEP"/>
+    </call>
+    <property description="accOrders" expression="json-eval($)" name="accOrders" scope="default" type="STRING"/>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="AccComparewithEP"/>
+    </call>
+    <property description="accComparewith" expression="json-eval($)" name="accComparewith" scope="default" type="STRING"/>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <payloadFactory media-type="json">
+        <format>{&#xd;
+    "accountID"&#xd;
+: &#xd;
+"$4",&#xd;
+"customerID"&#xd;
+: &#xd;
+"$1",&#xd;
+"partnerID"&#xd;
+: &#xd;
+"$2",&#xd;
+"tenantID"&#xd;
+: &#xd;
+"$3"&#xd;
+}</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('uri.var.custID')"/>
+            <arg evaluator="xml" expression="get-property('uri.var.partnerID')"/>
+            <arg evaluator="xml" expression="get-property('uri.var.tenantID')"/>
+            <arg evaluator="xml" expression="get-property('uri.var.accountID')"/>
+        </args>
+    </payloadFactory>
+    <call>
+        <endpoint key="CustInteractionEP"/>
+    </call>
+    <property description="accInteractions" expression="json-eval($)" name="accInteractions" scope="default" type="STRING"/>
+    <header expression="fn:concat('Bearer ',get-property('authToken'))" name="Authorization" scope="transport"/>
+    <call>
+        <endpoint key="AccComparewithEP"/>
+    </call>
+    <property description="accNotifications" expression="json-eval($)" name="accNotifications" scope="default" type="STRING"/>
+</sequence>
