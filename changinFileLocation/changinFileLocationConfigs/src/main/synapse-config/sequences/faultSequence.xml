@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="faultSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <propertyGroup>
+        <property expression="$ctx:ERROR_CODE" name="ERROR_CODE" scope="default" type="STRING"/>
+        <property expression="$ctx:ERROR_DETAIL" name="ERROR_DETAIL" scope="default" type="STRING"/>
+        <property expression="$ctx:ERROR_MESSAGE" name="ERROR_MESSAGE" scope="default" type="STRING"/>
+    </propertyGroup>
+    <payloadFactory media-type="text">
+        <format>$1,&#xd;
+$2,&#xd;
+$3</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('ERROR_CODE')"/>
+            <arg evaluator="xml" expression="get-property('ERROR_MESSAGE')"/>
+            <arg evaluator="xml" expression="get-property('ERROR_DETAIL')"/>
+        </args>
+    </payloadFactory>
+    <respond/>
+</sequence>

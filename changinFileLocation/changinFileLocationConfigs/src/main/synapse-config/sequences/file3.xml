@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="file3" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property expression="get-property(&quot;SYSTEM_DATE&quot;, &quot;yyyy-MM-dd;;HH:mm:ss&quot;)" name="date" scope="default" type="STRING"/>
+    <log level="custom">
+        <property expression="get-property(&quot;SYSTEM_DATE&quot;, &quot;yyyy-MM-dd'T'HH:mm:ss&quot;)" name="date"/>
+    </log>
+    <script language="js"><![CDATA[var randomNumber=Math.floor((Math.random() * 100));
+    var utcStr = new Date().toUTCString();
+    var utcStrSlice=utcStr.slice(0,16);
+	var date =new Date();
+	
+	var milli=date.getMilliseconds();
+
+    mc.setProperty("random",utcStrSlice);
+    mc.setProperty("milliSecs",milli);]]></script>
+    <log>
+        <property expression="get-property('milliSecs')" name="ds"/>
+        <property expression="get-property('random')" name="as"/>
+    </log>
+    <file.copy configKey="changeConnection">
+        <sourcePath>ajay\App2.xml</sourcePath>
+        <targetPath>myFiles</targetPath>
+        <sourceFilePattern>.*\.xml</sourceFilePattern>
+        <includeParent>false</includeParent>
+        <overwrite>false</overwrite>
+        <renameTo>{fn:concat('file1',get-property('random'),'.xml')}</renameTo>
+    </file.copy>
+    <respond/>
+</sequence>
