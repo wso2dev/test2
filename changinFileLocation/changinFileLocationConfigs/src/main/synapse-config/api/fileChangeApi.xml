@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/change" name="fileChangeApi" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <file.listFiles configKey="myConnection2">
+                <directoryPath>\ajay</directoryPath>
+                <matchingPattern>.*\.xml</matchingPattern>
+            </file.listFiles>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <property expression="json-eval($.listFilesResult.directory.file)" name="array" scope="default" type="STRING"/>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+"files":$1&#xd;
+}</format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('array')"/>
+                </args>
+            </payloadFactory>
+            <foreach expression="json-eval($.files)" id="q1">
+                <sequence>
+                    <property expression="$body/*" name="eachFile" scope="default" type="STRING"/>
+                    <log>
+                        <property expression="get-property('eachFile')" name="body"/>
+                    </log>
+                    <script language="js"><![CDATA[var  file=mc.getProperty("eachFile");
+                    var extension= file.slice(-5);
+                    mc .setProperty("extension",extension);]]></script>
+                    <property expression="get-property('extension')" name="exe" scope="default" type="STRING"/>
+                    <log>
+                        <property expression="get-property('exe')" name="sd"/>
+                    </log>
+                    <filter regex=".xml&quot;" source="get-property('exe')">
+                        <then>
+                            <log>
+                                <property expression="get-property('exe')" name="exe"/>
+                            </log>
+                            <file.copy configKey="myConnection2">
+                                <sourcePath>{fn:concat("ajay\",get-property('eachFile'))}</sourcePath>
+                                <targetPath>myFiles</targetPath>
+                                <sourceFilePattern>.*\.xml</sourceFilePattern>
+                                <includeParent>true</includeParent>
+                                <overwrite>false</overwrite>
+                                <renameTo>cpy.xml</renameTo>
+                            </file.copy>
+                            <respond/>
+                        </then>
+                        <else>
+                            <log>
+                                <property name="else" value="else"/>
+                            </log>
+                        </else>
+                    </filter>
+                </sequence>
+            </foreach>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence>
+            <sequence key="faultSequence"/>
+        </faultSequence>
+    </resource>
+</api>
