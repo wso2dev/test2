@@ -4,17 +4,30 @@
         <inSequence>
             <sequence key="UserLogin"/>
             <sequence key="CustInfo"/>
-            <sequence key="CustRequests"/>
-            <sequence key="CustBills"/>
-            <sequence key="CustTransactions"/>
-            <sequence key="CustBillingAccDetails"/>
-            <sequence key="CustBalancesShare"/>
-            <sequence key="CustInteraction"/>
-            <sequence key="CustNotifications"/>
-            <sequence key="CustBillingAccsIteration"/>
-            <sequence key="CustAccounts"/>
-            <payloadFactory media-type="json">
-                <format>{"customer360":{&#xd;
+            <filter regex="No data found." source="//statusMessage">
+                <then>
+                    <payloadFactory media-type="json">
+                        <format>{&#xd;
+&#xd;
+"Message":"Please provide a valid customer ID"&#xd;
+&#xd;
+}</format>
+                        <args/>
+                    </payloadFactory>
+                    <respond/>
+                </then>
+                <else>
+                    <sequence key="CustRequests"/>
+                    <sequence key="CustBills"/>
+                    <sequence key="CustTransactions"/>
+                    <sequence key="CustBillingAccDetails"/>
+                    <sequence key="CustBalancesShare"/>
+                    <sequence key="CustInteraction"/>
+                    <sequence key="CustNotifications"/>
+                    <sequence key="CustBillingAccsIteration"/>
+                    <sequence key="CustAccounts"/>
+                    <payloadFactory media-type="json">
+                        <format>{"customer360":{&#xd;
 "CustomerInfo":$1,&#xd;
 "CustomerRequests":$2,&#xd;
 "CustomerBills":$3,&#xd;
@@ -29,20 +42,22 @@
 "CustomerEachAcc360":$10&#xd;
 }&#xd;
 }</format>
-                <args>
-                    <arg evaluator="xml" expression="get-property('custInfo')"/>
-                    <arg evaluator="xml" expression="get-property('custReq')"/>
-                    <arg evaluator="xml" expression="get-property('custBills')"/>
-                    <arg evaluator="xml" expression="get-property('billingAccDetails')"/>
-                    <arg evaluator="xml" expression="get-property('operation','concat-data')"/>
-                    <arg evaluator="xml" expression="get-property('custTransactions')"/>
-                    <arg evaluator="xml" expression="get-property('custBalancesShare')"/>
-                    <arg evaluator="xml" expression="get-property('custInteraction')"/>
-                    <arg evaluator="xml" expression="get-property('custNotifications')"/>
-                    <arg evaluator="xml" expression="get-property('operation','allAccs')"/>
-                </args>
-            </payloadFactory>
-            <respond/>
+                        <args>
+                            <arg evaluator="xml" expression="get-property('custInfo')"/>
+                            <arg evaluator="xml" expression="get-property('custReq')"/>
+                            <arg evaluator="xml" expression="get-property('custBills')"/>
+                            <arg evaluator="xml" expression="get-property('billingAccDetails')"/>
+                            <arg evaluator="xml" expression="get-property('operation','concat-data')"/>
+                            <arg evaluator="xml" expression="get-property('custTransactions')"/>
+                            <arg evaluator="xml" expression="get-property('custBalancesShare')"/>
+                            <arg evaluator="xml" expression="get-property('custInteraction')"/>
+                            <arg evaluator="xml" expression="get-property('custNotifications')"/>
+                            <arg evaluator="xml" expression="get-property('operation','allAccs')"/>
+                        </args>
+                    </payloadFactory>
+                    <respond/>
+                </else>
+            </filter>
         </inSequence>
         <outSequence/>
     </resource>

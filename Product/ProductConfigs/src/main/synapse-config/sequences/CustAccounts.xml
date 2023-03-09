@@ -9,24 +9,36 @@
     <log level="custom">
         <property expression="get-property('countAccs')" name="custAccounts"/>
     </log>
-    <iterate expression="//result" id="OnAccs" sequential="true">
-        <target>
-            <sequence>
-                <propertyGroup description="billingID&amp;accountID">
-                    <property expression="//billingAccountID" name="uri.var.billingID" scope="default" type="STRING"/>
-                    <property expression="//customerAccountID" name="uri.var.accountID" scope="default" type="STRING"/>
-                    <property expression="//customerAccountName" name="uri.var.accountName" scope="default" type="STRING"/>
-                </propertyGroup>
-                <log level="custom">
-                    <property expression="get-property('uri.var.billingID')" name="uri.var.billingID"/>
-                    <property expression="get-property('uri.var.accountID')" name="uri.var.accountID"/>
-                    <property expression="get-property('uri.var.accountName')" name="uri.var.accountName"/>
-                </log>
-                <switch source="//customerAccountType">
-                    <case regex="11">
-                        <sequence key="PrepaidAcc360Seq"/>
-                        <payloadFactory media-type="json">
-                            <format>{&#xd;
+    <filter regex="No data found." source="//statusMessage">
+        <then>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+"Message":"There are no prepaid &amp; postpaid accounts for this customer."&#xd;
+&#xd;
+}</format>
+                <args/>
+            </payloadFactory>
+            <property description="allAccs" expression="json-eval($)" name="allAccs" scope="operation" type="STRING"/>
+        </then>
+        <else>
+            <iterate expression="//result" id="OnAccs" sequential="true">
+                <target>
+                    <sequence>
+                        <propertyGroup description="billingID&amp;accountID">
+                            <property expression="//billingAccountID" name="uri.var.billingID" scope="default" type="STRING"/>
+                            <property expression="//customerAccountID" name="uri.var.accountID" scope="default" type="STRING"/>
+                            <property expression="//customerAccountName" name="uri.var.accountName" scope="default" type="STRING"/>
+                        </propertyGroup>
+                        <log level="custom">
+                            <property expression="get-property('uri.var.billingID')" name="uri.var.billingID"/>
+                            <property expression="get-property('uri.var.accountID')" name="uri.var.accountID"/>
+                            <property expression="get-property('uri.var.accountName')" name="uri.var.accountName"/>
+                        </log>
+                        <switch source="//customerAccountType">
+                            <case regex="11">
+                                <sequence key="PrepaidAcc360Seq"/>
+                                <payloadFactory media-type="json">
+                                    <format>{&#xd;
 "$1":[&#xd;
 {"AccInfo":$2},&#xd;
 {"AccDocuments":$3},&#xd;
@@ -46,31 +58,31 @@
 &#xd;
 ]&#xd;
 }</format>
-                            <args>
-                                <arg evaluator="xml" expression="fn:concat('customer prepaid account : ',get-property('uri.var.accountID') )"/>
-                                <arg evaluator="xml" expression="get-property('accInfo')"/>
-                                <arg evaluator="xml" expression="get-property('accDoc')"/>
-                                <arg evaluator="xml" expression="get-property('accContracts')"/>
-                                <arg evaluator="xml" expression="get-property('accDevices')"/>
-                                <arg evaluator="xml" expression="get-property('accRequests')"/>
-                                <arg evaluator="xml" expression="get-property('accTransactions')"/>
-                                <arg evaluator="xml" expression="get-property('accCoupons')"/>
-                                <arg evaluator="xml" expression="get-property('accRelations')"/>
-                                <arg evaluator="xml" expression="get-property('accReplenishment')"/>
-                                <arg evaluator="xml" expression="get-property('accOwnership')"/>
-                                <arg evaluator="xml" expression="get-property('accOrders')"/>
-                                <arg evaluator="xml" expression="get-property('accComparewith')"/>
-                                <arg evaluator="xml" expression="get-property('accInteractions')"/>
-                                <arg evaluator="xml" expression="get-property('accNotifications')"/>
-                                <arg evaluator="xml" expression="get-property('accUsage')"/>
-                            </args>
-                        </payloadFactory>
-                        <property description="oneAcc" expression="json-eval($)" name="oneAcc" scope="default" type="STRING"/>
-                    </case>
-                    <case regex="12">
-                        <sequence key="Acc360Seq"/>
-                        <payloadFactory media-type="json">
-                            <format>{&#xd;
+                                    <args>
+                                        <arg evaluator="xml" expression="fn:concat('customer prepaid account : ',get-property('uri.var.accountID') )"/>
+                                        <arg evaluator="xml" expression="get-property('accInfo')"/>
+                                        <arg evaluator="xml" expression="get-property('accDoc')"/>
+                                        <arg evaluator="xml" expression="get-property('accContracts')"/>
+                                        <arg evaluator="xml" expression="get-property('accDevices')"/>
+                                        <arg evaluator="xml" expression="get-property('accRequests')"/>
+                                        <arg evaluator="xml" expression="get-property('accTransactions')"/>
+                                        <arg evaluator="xml" expression="get-property('accCoupons')"/>
+                                        <arg evaluator="xml" expression="get-property('accRelations')"/>
+                                        <arg evaluator="xml" expression="get-property('accReplenishment')"/>
+                                        <arg evaluator="xml" expression="get-property('accOwnership')"/>
+                                        <arg evaluator="xml" expression="get-property('accOrders')"/>
+                                        <arg evaluator="xml" expression="get-property('accComparewith')"/>
+                                        <arg evaluator="xml" expression="get-property('accInteractions')"/>
+                                        <arg evaluator="xml" expression="get-property('accNotifications')"/>
+                                        <arg evaluator="xml" expression="get-property('accUsage')"/>
+                                    </args>
+                                </payloadFactory>
+                                <property description="oneAcc" expression="json-eval($)" name="oneAcc" scope="default" type="STRING"/>
+                            </case>
+                            <case regex="12">
+                                <sequence key="Acc360Seq"/>
+                                <payloadFactory media-type="json">
+                                    <format>{&#xd;
 "$1":[&#xd;
 {"AccInfo":$2},&#xd;
 {"AccDocuments":$3},&#xd;
@@ -90,53 +102,55 @@
 &#xd;
 ]&#xd;
 }</format>
-                            <args>
-                                <arg evaluator="xml" expression="fn:concat('customer postpaid account : ',get-property('uri.var.accountID') )"/>
-                                <arg evaluator="xml" expression="get-property('accInfo')"/>
-                                <arg evaluator="xml" expression="get-property('accDoc')"/>
-                                <arg evaluator="xml" expression="get-property('accContracts')"/>
-                                <arg evaluator="xml" expression="get-property('accDevices')"/>
-                                <arg evaluator="xml" expression="get-property('accRequests')"/>
-                                <arg evaluator="xml" expression="get-property('accTransactions')"/>
-                                <arg evaluator="xml" expression="get-property('accCoupons')"/>
-                                <arg evaluator="xml" expression="get-property('accRelations')"/>
-                                <arg evaluator="xml" expression="get-property('autoDebit')"/>
-                                <arg evaluator="xml" expression="get-property('accOwnership')"/>
-                                <arg evaluator="xml" expression="get-property('accOrders')"/>
-                                <arg evaluator="xml" expression="get-property('accComparewith')"/>
-                                <arg evaluator="xml" expression="get-property('accInteractions')"/>
-                                <arg evaluator="xml" expression="get-property('accNotifications')"/>
-                                <arg evaluator="xml" expression="get-property('accUsage')"/>
-                            </args>
-                        </payloadFactory>
-                        <property description="oneAcc" expression="json-eval($)" name="oneAcc" scope="default" type="STRING"/>
-                    </case>
-                    <default/>
-                </switch>
-                <filter regex="false" source="boolean(get-property('operation','allAccs'))">
-                    <then>
-                        <property description="allAccs" expression="get-property('oneAcc')" name="allAccs" scope="operation" type="STRING"/>
-                    </then>
-                    <else>
-                        <property description="allAccs" expression="fn:concat(get-property('operation','allAccs'),',',get-property('oneAcc'),)" name="allAccs" scope="operation" type="STRING"/>
-                    </else>
-                </filter>
-            </sequence>
-        </target>
-    </iterate>
-    <aggregate id="OnAccs">
-        <completeCondition>
-            <messageCount max="-1" min="-1"/>
-        </completeCondition>
-        <onComplete aggregateElementType="root" expression="json-eval($)">
-            <payloadFactory media-type="json">
-                <format>{&#xd;
+                                    <args>
+                                        <arg evaluator="xml" expression="fn:concat('customer postpaid account : ',get-property('uri.var.accountID') )"/>
+                                        <arg evaluator="xml" expression="get-property('accInfo')"/>
+                                        <arg evaluator="xml" expression="get-property('accDoc')"/>
+                                        <arg evaluator="xml" expression="get-property('accContracts')"/>
+                                        <arg evaluator="xml" expression="get-property('accDevices')"/>
+                                        <arg evaluator="xml" expression="get-property('accRequests')"/>
+                                        <arg evaluator="xml" expression="get-property('accTransactions')"/>
+                                        <arg evaluator="xml" expression="get-property('accCoupons')"/>
+                                        <arg evaluator="xml" expression="get-property('accRelations')"/>
+                                        <arg evaluator="xml" expression="get-property('autoDebit')"/>
+                                        <arg evaluator="xml" expression="get-property('accOwnership')"/>
+                                        <arg evaluator="xml" expression="get-property('accOrders')"/>
+                                        <arg evaluator="xml" expression="get-property('accComparewith')"/>
+                                        <arg evaluator="xml" expression="get-property('accInteractions')"/>
+                                        <arg evaluator="xml" expression="get-property('accNotifications')"/>
+                                        <arg evaluator="xml" expression="get-property('accUsage')"/>
+                                    </args>
+                                </payloadFactory>
+                                <property description="oneAcc" expression="json-eval($)" name="oneAcc" scope="default" type="STRING"/>
+                            </case>
+                            <default/>
+                        </switch>
+                        <filter regex="false" source="boolean(get-property('operation','allAccs'))">
+                            <then>
+                                <property description="allAccs" expression="get-property('oneAcc')" name="allAccs" scope="operation" type="STRING"/>
+                            </then>
+                            <else>
+                                <property description="allAccs" expression="fn:concat(get-property('operation','allAccs'),',',get-property('oneAcc'),)" name="allAccs" scope="operation" type="STRING"/>
+                            </else>
+                        </filter>
+                    </sequence>
+                </target>
+            </iterate>
+            <aggregate id="OnAccs">
+                <completeCondition>
+                    <messageCount max="-1" min="-1"/>
+                </completeCondition>
+                <onComplete aggregateElementType="root" expression="json-eval($)">
+                    <payloadFactory media-type="json">
+                        <format>{&#xd;
 $1&#xd;
 }</format>
-                <args>
-                    <arg evaluator="xml" expression="get-property('operation','allAccs')"/>
-                </args>
-            </payloadFactory>
-        </onComplete>
-    </aggregate>
+                        <args>
+                            <arg evaluator="xml" expression="get-property('operation','allAccs')"/>
+                        </args>
+                    </payloadFactory>
+                </onComplete>
+            </aggregate>
+        </else>
+    </filter>
 </sequence>
