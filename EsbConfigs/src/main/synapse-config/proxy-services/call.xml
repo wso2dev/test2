@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="call" startOnLoad="true" transports="http https local" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <log level="full"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </target>
+</proxy>

@@ -1,0 +1,10 @@
+---
+key: "business-logic-1.0.0"
+name : "business-logic"
+displayName : "business-logic"
+description: "Sample API"
+version: "1.0.0"
+serviceUrl: "https://{host}:{port}/custom"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false

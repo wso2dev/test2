@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/api2" name="RestAPI2" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/unittest1">
+        <inSequence>
+            <property name="HTTP_SC" scope="transport" type="STRING" value="200"/>
+            <payloadFactory media-type="text">
+                <format>GET RESPONSES</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence>
+            <sequence key="ErrorHandling"/>
+        </faultSequence>
+    </resource>
+    <resource methods="POST" uri-template="/unittest1">
+        <inSequence>
+            <property name="HTTP_SC" scope="axis2" type="STRING" value="201"/>
+            <payloadFactory media-type="text">
+                <format>POSTRESPONSES</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence>
+            <sequence key="ErrorHandling"/>
+        </faultSequence>
+    </resource>
+    <resource methods="PUT" uri-template="/unittest1">
+        <inSequence>
+            <property name="HTTP_SC" scope="transport" type="STRING" value="201"/>
+            <payloadFactory media-type="text">
+                <format>PUT RESPONSES</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence>
+            <sequence key="ErrorHandling"/>
+        </faultSequence>
+    </resource>
+    <resource methods="DELETE" uri-template="/unittest1">
+        <inSequence>
+            <property name="HTTP_SC" scope="transport" type="STRING" value="200"/>
+            <payloadFactory media-type="text">
+                <format>DELETE RESPONSES</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence>
+            <sequence key="ErrorHandling"/>
+        </faultSequence>
+    </resource>
+</api>

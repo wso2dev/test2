@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="call" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <log level="full"/>
+            <switch source="get-property('Action')">
+                <case regex="urn:mediate">
+                    <payloadFactory media-type="xml">
+                        <format>
+                            <message xmlns="">Action urn:mediate is not implemented</message>
+                        </format>
+                        <args/>
+                    </payloadFactory>
+                </case>
+                <case regex=".*+">
+                    <payloadFactory media-type="xml">
+                        <format>
+                            <message xmlns="">Action not implemented</message>
+                        </format>
+                        <args/>
+                    </payloadFactory>
+                </case>
+                <default/>
+            </switch>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </target>
+    <publishWSDL preservePolicy="true" uri="http://desktop-4cm0dfo:8290/services/call?wsdl"/>
+</proxy>

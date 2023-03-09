@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="business-logic" groupId="wso2.sampleUnitTestTutorial.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/business-logic.xml</file>
+    </artifact>
+    <artifact name="business-logic_swagger" groupId="wso2.sampleUnitTestTutorial.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/business-logic_swagger.yaml</file>
+    </artifact>
+    <artifact name="business-logic_metadata" groupId="wso2.sampleUnitTestTutorial.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/business-logic_metadata.yaml</file>
+    </artifact>
+    <artifact name="ErrorHandling" groupId="wso2.sampleUnitTestTutorial.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/ErrorHandling.xml</file>
+    </artifact>
+    <artifact name="firstSubFlow" groupId="wso2.sampleUnitTestTutorial.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/firstSubFlow.xml</file>
+    </artifact>
+    <artifact name="secondaryFlow" groupId="wso2.sampleUnitTestTutorial.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/secondaryFlow.xml</file>
+    </artifact>
+    <artifact name="secondSubFlow" groupId="wso2.sampleUnitTestTutorial.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/secondSubFlow.xml</file>
+    </artifact>
+</artifacts>

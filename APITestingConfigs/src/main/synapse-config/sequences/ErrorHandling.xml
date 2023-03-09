@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="ErrorHandling" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <propertyGroup description="ERRORHANDLING">
+        <property expression="get-property('ERROR_CODE')" name="ERROR_CODE" scope="default" type="INTEGER"/>
+        <property expression="get-property('ERROR_DETAIL')" name="ERROR_DETAIL" scope="default" type="STRING"/>
+        <property expression="get-property('ERROR_EXCEPTION')" name="ERROR_EXCEPTION" scope="default" type="STRING"/>
+        <property expression="get-property('ERROR_MESSAGE')" name="ERROR_MESSAGE" scope="default" type="STRING"/>
+    </propertyGroup>
+    <payloadFactory media-type="json">
+        <format>&lt;inline/&gt;</format>
+        <args>
+            <arg evaluator="json" expression="get-property('ERROR_CODE')" literal="true"/>
+            <arg evaluator="json" expression="get-property('ERROR_DETAIL')" literal="true"/>
+            <arg evaluator="json" expression="get-property('ERROR_EXCEPTION')" literal="true"/>
+            <arg evaluator="json" expression="get-property('ERROR_MESSAGE')" literal="true"/>
+        </args>
+    </payloadFactory>
+    <respond/>
+</sequence>

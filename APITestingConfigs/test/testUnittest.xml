@@ -1,0 +1,27 @@
+<unit-test>
+    <artifacts>
+        <test-artifact>
+            <artifact>/APITestingConfigs/src/main/synapse-config/api/test.xml</artifact>
+        </test-artifact>
+        <supportive-artifacts/>
+        <registry-resources/>
+        <connector-resources/>
+    </artifacts>
+    <test-cases>
+        <test-case name="test1">
+            <input>
+                <request-path>/test</request-path>
+                <request-method>GET</request-method>
+                <request-protocol>http</request-protocol>
+            </input>
+            <assertions>
+                <assertEquals>
+                    <actual>$body</actual>
+                    <expected><![CDATA["hell"]]></expected>
+                    <message>validationFail</message>
+                </assertEquals>
+            </assertions>
+        </test-case>
+    </test-cases>
+    <mock-services/>
+</unit-test>
