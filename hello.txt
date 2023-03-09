@@ -1,8 +1,0 @@
-<<<<<<< HEAD
-Hello world !!!!
-=======
-hello world!!!!
-
-
-srinivas
->>>>>>> 993ef1671e540e0adc0514c0a2391f816387a1a9
