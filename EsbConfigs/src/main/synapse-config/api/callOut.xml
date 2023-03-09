@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/callOut" name="callOut" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET">
+        <inSequence>
+            <log level="full"/>
+            <property name="enableREST" scope="axis2-client" type="BOOLEAN" value="true"/>
+            <property expression="$axis2:HTTP_METHOD" name="HTTP_METHOD" scope="axis2-client" type="STRING"/>
+            <callout initAxis2ClientOptions="false" serviceURL="https://reqres.in/api/users?page=2"/>
+            <log level="custom">
+                <property expression="$ctx:response" name="MESSAGE###########################3"/>
+            </log>
+            <property expression="$ctx:response" name="res" scope="default" type="OM"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

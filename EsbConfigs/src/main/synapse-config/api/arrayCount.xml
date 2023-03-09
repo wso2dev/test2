@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/array" name="arrayCount" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <property expression="$body/*" name="DATA_PAYLOAD" scope="default" type="OM"/>
+            <property expression="get-property('DATA_PAYLOAD')" name="ITERATOR_DATA_PAYLOAD" scope="operation" type="OM"/>
+            <log level="custom">
+                <property expression="$body/*" name="DATA_PAYLOAD"/>
+            </log>
+            <iterate attachPath="." continueParent="true" expression="$body/breakfastmenu" id="menu" preservePayload="true" sequential="true">
+                <target>
+                    <sequence>
+                        <property expression="get-property('operation','ITERATOR_DATA_PAYLOAD')" name="DATA_PAYLOAD" scope="default" type="OM"/>
+                        <log level="custom">
+                            <property expression="get-property('operation','ITERATOR_DATA_PAYLOAD')" name="DATA_PAYLOAD"/>
+                        </log>
+                    </sequence>
+                </target>
+            </iterate>
+            <property expression="get-property('operation','ITERATOR_DATA_PAYLOAD')" name="NEW_DATA_PAYLOAD" scope="default" type="OM" xmlns:ns="http://org.apache.synapse/xsd"/>
+            <log level="full">
+                <property expression="get-property('operation','ITERATOR_DATA_PAYLOAD')" name="NEW_DATA_PAYLOAD" xmlns:ns="http://org.apache.synapse/xsd"/>
+            </log>
+            <payloadFactory media-type="xml">
+                <format>
+                    <repsonse>$1</repsonse>
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('NEW_DATA_PAYLOAD')"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

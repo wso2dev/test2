@@ -1,0 +1,32 @@
+map_S_catalog_S_catalog = function(){ 
+var outputcatalog={};
+var SPLIT_6_0 = '';
+var GET_6_0 = '';
+var GET_6_1 = '';
+var CONCAT_9_0 = '';
+
+SPLIT_6_0 = inputcatalog.author.split(',');
+GET_6_0 = SPLIT_6_0[0];
+GET_6_1 = SPLIT_6_0[1];
+CONCAT_9_0 = inputcatalog.fname.toString().concat('',inputcatalog.sname);
+outputcatalog =  {};
+outputcatalog.fullname = CONCAT_9_0;
+outputcatalog.author = GET_6_1.toString().concat('',GET_6_0);
+outputcatalog.title = inputcatalog.title.toString().trim();
+outputcatalog.genre = inputcatalog.genre.toString().toUpperCase();
+outputcatalog.price = inputcatalog.price;
+outputcatalog.publish_date = inputcatalog.publish_date;
+outputcatalog.description = inputcatalog.description;
+return outputcatalog;
+};
+
+
+
+
+
+
+
+
+
+
+

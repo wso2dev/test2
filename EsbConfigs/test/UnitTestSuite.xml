@@ -1,0 +1,24 @@
+<unit-test>
+    <artifacts>
+        <test-artifact>
+            <artifact>/EsbConfigs/src/main/synapse-config/sequences/sample.xml</artifact>
+        </test-artifact>
+        <supportive-artifacts/>
+        <registry-resources/>
+        <connector-resources/>
+    </artifacts>
+    <test-cases>
+        <test-case name="sampleTest">
+            <assertions>
+                <assertEquals>
+                    <actual>$body</actual>
+                    <expected><![CDATA[{
+                                "Hello" : ""
+                                }]]></expected>
+                    <message>Actual and Expected are not matched</message>
+                </assertEquals>
+            </assertions>
+        </test-case>
+    </test-cases>
+    <mock-services/>
+</unit-test>

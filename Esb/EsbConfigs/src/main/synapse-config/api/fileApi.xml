@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/fileCopy" name="fileApi" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET">
+        <inSequence>
+            <file.checkExist configKey="FILE_CONNECTION_ExistCheckV">
+                <path>ApplicationLocations\copyFilelocation\inputFile.xml</path>
+                <includeResultTo>Message Body</includeResultTo>
+            </file.checkExist>
+            <log level="full">
+                <property expression="$body/*" name="exsits"/>
+            </log>
+            <property name="sourcePath" scope="default" type="STRING" value="Wso2Softwares\inputFile.xml"/>
+            <property name="targetPath" scope="default" type="STRING" value="ApplicationLocations\copyFilelocation"/>
+            <property expression="get-property('SYSTEM_DATE', 'yyyy-MM-dd&amp;HH-mm-ss')" name="date" scope="default" type="STRING"/>
+            <property expression="fn:concat('fileName',get-property('date'))" name="customer" scope="default" type="STRING"/>
+            <log level="custom">
+                <property expression="$ctx:sourcePath" name="Log_from:"/>
+                <property expression="$ctx:targetPath" name="Log_to:"/>
+                <property expression="get-property('SYSTEM_DATE', 'yyyy-MM-dd&amp;HH-mm-ss')" name="date"/>
+            </log>
+            <file.copy configKey="FILE_CONNECTION_2">
+                <sourcePath>{$ctx:sourcePath}</sourcePath>
+                <targetPath>{$ctx:targetPath}</targetPath>
+                <renameTo>{get-property('customer')}</renameTo>
+            </file.copy>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence>
+            <propertyGroup description="ERRORHANDLING">
+                <property expression="get-property('ERROR_CODE')" name="ERROR_CODE" scope="default" type="INTEGER"/>
+                <property expression="get-property('ERROR_DETAIL')" name="ERROR_DETAIL" scope="default" type="STRING"/>
+                <property expression="get-property('ERROR_EXCEPTION')" name="ERROR_EXCEPTION" scope="default" type="STRING"/>
+                <property expression="get-property('ERROR_MESSAGE')" name="ERROR_MESSAGE" scope="default" type="STRING"/>
+            </propertyGroup>
+            <payloadFactory media-type="json">
+                <format>{
+                "ERROR_CODE":"$1",
+                                "ERROR_DETAIL":"$2",
+                                "ERROR_EXCEPTION":"$3",
+                                "ERROR_MESSAGE":"$4",
+                
+                }
+                </format>
+                <args>
+                    <arg evaluator="json" expression="get-property('ERROR_CODE')" literal="true"/>
+                    <arg evaluator="json" expression="get-property('ERROR_DETAIL')" literal="true"/>
+                    <arg evaluator="json" expression="get-property('ERROR_EXCEPTION')" literal="true"/>
+                    <arg evaluator="json" expression="get-property('ERROR_MESSAGE')" literal="true"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </faultSequence>
+    </resource>
+</api>

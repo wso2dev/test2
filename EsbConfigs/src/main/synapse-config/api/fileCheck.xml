@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/fileCheck" name="fileCheck" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET">
+        <inSequence>
+            <file.checkExist configKey="FILE_CONNECTION_ExistCheckV">
+                <path>ApplicationLocations\copyFilelocation\inputFile.xml</path>
+                <includeResultTo>Message Body</includeResultTo>
+            </file.checkExist>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

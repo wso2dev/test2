@@ -1,0 +1,49 @@
+<unit-test>
+    <artifacts>
+        <test-artifact>
+            <artifact>/APITestingConfigs/src/main/synapse-config/api/RestAPI2.xml</artifact>
+        </test-artifact>
+        <supportive-artifacts/>
+        <registry-resources/>
+        <connector-resources/>
+    </artifacts>
+    <test-cases>
+        <test-case name="GET_Suite">
+            <input>
+                <request-path>/unittest1</request-path>
+                <request-method>GET</request-method>
+            </input>
+            <assertions>
+                <assertEquals>
+                    <actual>$body</actual>
+                    <expected><![CDATA[GET RESPONSES]]></expected>
+                    <message>not Expected response</message>
+                </assertEquals>
+                <assertEquals>
+                    <actual>$statusCode</actual>
+                    <expected><![CDATA[200]]></expected>
+                    <message>status code is wrong</message>
+                </assertEquals>
+            </assertions>
+        </test-case>
+        <test-case name="POSTSuite">
+            <input>
+                <request-path>/unittest1</request-path>
+                <request-method>POST</request-method>
+            </input>
+            <assertions>
+                <assertEquals>
+                    <actual>$body</actual>
+                    <expected><![CDATA[POST RESPONSES]]></expected>
+                    <message>not a expected payload</message>
+                </assertEquals>
+                <assertEquals>
+                    <actual>$statusCode</actual>
+                    <expected><![CDATA[201]]></expected>
+                    <message>invalid statuscode</message>
+                </assertEquals>
+            </assertions>
+        </test-case>
+    </test-cases>
+    <mock-services/>
+</unit-test>

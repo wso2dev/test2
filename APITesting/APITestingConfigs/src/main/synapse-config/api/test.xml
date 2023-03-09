@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/test" name="test" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET">
+        <inSequence>
+            <payloadFactory media-type="text">
+                <format>"hello"</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

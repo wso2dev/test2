@@ -1,0 +1,11 @@
+---
+key: "fileCheck-1.0.0"
+name : "fileCheck"
+displayName : "fileCheck"
+description: "Sample API"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/fileCheck"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
+apiId : "null"

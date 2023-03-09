@@ -1,0 +1,41 @@
+{
+  "$schema" : "http://wso2.org/json-schema/wso2-data-mapper-v5.0.0/schema#",
+  "inputType" : "XML",
+  "id" : "http://wso2jsonschema.org",
+  "title" : "catalog",
+  "type" : "object",
+  "properties" : {
+    "fname" : {
+      "id" : "http://wso2jsonschema.org/fname",
+      "type" : "string"
+    },
+    "sname" : {
+      "id" : "http://wso2jsonschema.org/sname",
+      "type" : "string"
+    },
+    "author" : {
+      "id" : "http://wso2jsonschema.org/author",
+      "type" : "string"
+    },
+    "title" : {
+      "id" : "http://wso2jsonschema.org/title",
+      "type" : "string"
+    },
+    "genre" : {
+      "id" : "http://wso2jsonschema.org/genre",
+      "type" : "string"
+    },
+    "price" : {
+      "id" : "http://wso2jsonschema.org/price",
+      "type" : "number"
+    },
+    "publish_date" : {
+      "id" : "http://wso2jsonschema.org/publish_date",
+      "type" : "string"
+    },
+    "description" : {
+      "id" : "http://wso2jsonschema.org/description",
+      "type" : "string"
+    }
+  }
+}

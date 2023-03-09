@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/call" name="callApi" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET">
+        <inSequence>
+            <log level="full">
+                <property name="Server" value="SERVER2"/>
+            </log>
+            <call>
+                <endpoint>
+                    <http method="get" uri-template="https://reqres.in/api/users?page=2">
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>1</progressionFactor>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </http>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
