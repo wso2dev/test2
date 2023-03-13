@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="addressList" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="json">
+        <format>$1</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('addressList')"/>
+        </args>
+    </payloadFactory>
+    <propertyGroup description="Details about Customer Address">
+        <property expression="json-eval($.addressID)" name="addressID" scope="default" type="STRING"/>
+        <property expression="json-eval($.addressLine1)" name="addressLine1" scope="default" type="STRING"/>
+        <property expression="json-eval($.nodeID)" name="nodeID" scope="default" type="STRING"/>
+        <property expression="json-eval($.zipcodeID)" name="zipcodeID" scope="default" type="STRING"/>
+        <property expression="json-eval($.countryID)" name="countryID" scope="default" type="STRING"/>
+    </propertyGroup>
+    <log level="full">
+        <property expression="get-property('addressID')" name="addressID"/>
+        <property expression="get-property('addressLine1')" name="addressLine1"/>
+        <property expression="get-property('nodeID')" name="nodeID"/>
+        <property expression="get-property('zipcodeID')" name="zipcodeID"/>
+        <property expression="get-property('countryID')" name="countryID"/>
+        <property expression="get-property('addressList')" name="addressList"/>
+        <!--     <property expression="get-property('jsonData')" name="Jyothi"/> -->
+    </log>
+    <dbreport description="addressList">
+        <connection>
+            <pool>
+                <driver>com.mysql.jdbc.Driver</driver>
+                <url>jdbc:mysql://localhost:3306/sales</url>
+                <user>root</user>
+                <password>mysql</password>
+            </pool>
+        </connection>
+        <statement>
+            <sql><![CDATA[insert into addressList (addressID, addressLine1, nodeID, zipcodeID, countryID)  values (?,?,?,?,?)]]></sql>
+            <parameter expression="get-property('addressID')" type="VARCHAR"/>
+            <parameter expression="get-property('addressLine1')" type="VARCHAR"/>
+            <parameter expression="get-property('nodeID')" type="VARCHAR"/>
+            <parameter expression="get-property('zipcodeID')" type="VARCHAR"/>
+            <parameter expression="get-property('countryID')" type="VARCHAR"/>
+        </statement>
+    </dbreport>
+</sequence>

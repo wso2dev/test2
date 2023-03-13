@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="contactList" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="json">
+        <format>$1</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('contactList')"/>
+        </args>
+    </payloadFactory>
+    <propertyGroup>
+        <property expression="json-eval($.contactID)" name="contactID" scope="default" type="STRING"/>
+        <property expression="json-eval($.primaryMobile)" name="primaryMobile" scope="default" type="STRING"/>
+        <property expression="json-eval($.primaryEmail)" name="primaryEmail" scope="default" type="STRING"/>
+    </propertyGroup>
+    <log level="full">
+        <property expression="get-property('contactID')" name="contactID"/>
+        <property expression="get-property('primaryMobile')" name="primaryMobile"/>
+        <property expression="get-property('primaryEmail')" name="primaryEmail"/>
+        <!--     <property expression="get-property('jsonData')" name="Jyothi"/> -->
+    </log>
+    <dbreport>
+        <connection>
+            <pool>
+                <driver>com.mysql.cj.jdbc.Driver</driver>
+                <url>jdbc:mysql://localhost:3306/sales</url>
+                <user>root</user>
+                <password>mysql</password>
+            </pool>
+        </connection>
+        <statement>
+            <sql><![CDATA[insert into contactList(contactID, primaryMobile, primaryEmail)values (?,?,?)]]></sql>
+            <parameter expression="get-property('contactID')" type="VARCHAR"/>
+            <parameter expression="get-property('primaryMobile')" type="VARCHAR"/>
+            <parameter expression="get-property('primaryEmail')" type="VARCHAR"/>
+        </statement>
+    </dbreport>
+</sequence>

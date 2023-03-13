@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localEntry key="JsonCon" xmlns="http://ws.apache.org/ns/synapse">
+    <file.init>
+        <workingDir>E:\Test\Files\in</workingDir>
+        <name>JsonCon</name>
+        <fileLockScheme>Local</fileLockScheme>
+        <connectionType>LOCAL</connectionType>
+    </file.init>
+</localEntry>

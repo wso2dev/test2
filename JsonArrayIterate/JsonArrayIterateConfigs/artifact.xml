@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="JSON_Array_API" groupId="com.example.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/JSON_Array_API.xml</file>
+    </artifact>
+    <artifact name="JsonCon" groupId="com.example" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>\src\main\synapse-config\local-entries\JsonCon.xml</file>
+    </artifact>
+    <artifact name="JsonCon" groupId="com.example" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>\src\main\synapse-config\local-entries\JsonCon.xml</file>
+    </artifact>
+    <artifact name="JsonCon" groupId="com.example" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>\src\main\synapse-config\local-entries\JsonCon.xml</file>
+    </artifact>
+    <artifact name="addressList" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/addressList.xml</file>
+    </artifact>
+    <artifact name="contactList" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/contactList.xml</file>
+    </artifact>
+    <artifact name="segmentList" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/segmentList.xml</file>
+    </artifact>
+    <artifact name="JsonCon" groupId="com.example" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>\src\main\synapse-config\local-entries\JsonCon.xml</file>
+    </artifact>
+    <artifact name="JsonCon" groupId="com.example" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>\src\main\synapse-config\local-entries\JsonCon.xml</file>
+    </artifact>
+</artifacts>

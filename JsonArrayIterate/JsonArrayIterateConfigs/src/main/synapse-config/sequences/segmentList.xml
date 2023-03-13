@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="segmentList" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="json">
+        <format>{"segmentList":$1}</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('segmentList')"/>
+        </args>
+    </payloadFactory>
+    <log level="full">
+        <property expression="json-eval($)" name="Body"/>
+    </log>
+    <iterate continueParent="true" expression="//segmentList" id="Iterate" sequential="true">
+        <target>
+            <sequence>
+                <log>
+                    <property expression="//segment" name="Tera"/>
+                    <property expression="//status" name="Tera"/>
+                </log>
+                <propertyGroup>
+                    <property expression="//segment" name="segment" scope="default" type="STRING"/>
+                    <property expression="//status" name="status" scope="default" type="STRING"/>
+                </propertyGroup>
+                <dbreport description="segmentList">
+                    <connection>
+                        <pool>
+                            <driver>com.mysql.cj.jdbc.Driver</driver>
+                            <url>jdbc:mysql://localhost:3306/sales</url>
+                            <user>root</user>
+                            <password>mysql</password>
+                        </pool>
+                    </connection>
+                    <statement>
+                        <sql><![CDATA[insert into segmentList(customerID, segment, status)values (?,?,?)]]></sql>
+                        <parameter expression="get-property('customerID')" type="VARCHAR"/>
+                        <parameter expression="get-property('segment')" type="VARCHAR"/>
+                        <parameter expression="get-property('status')" type="VARCHAR"/>
+                    </statement>
+                </dbreport>
+            </sequence>
+        </target>
+    </iterate>
+</sequence>

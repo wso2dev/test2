@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/json_Array_API" name="JSON_Array_API" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <file.read configKey="JsonCon">
+                <path>/</path>
+                <filePattern>.*\.json</filePattern>
+                <readMode>Complete File</readMode>
+                <startLineNum>1</startLineNum>
+                <endLineNum>100</endLineNum>
+                <lineNum>1</lineNum>
+                <contentType>application/json</contentType>
+                <includeResultTo>Message Property</includeResultTo>
+                <resultPropertyName>jsonData</resultPropertyName>
+                <enableStreaming>false</enableStreaming>
+                <enableLock>false</enableLock>
+            </file.read>
+            <payloadFactory media-type="json">
+                <format>$1</format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('jsonData')"/>
+                </args>
+            </payloadFactory>
+            <propertyGroup>
+                <property expression="json-eval($.customer360.CustomerInfo.customerID)" name="customerID" scope="default" type="STRING"/>
+                <property expression="json-eval($.customer360.CustomerInfo.addressList)" name="addressList" scope="default" type="STRING"/>
+                <property expression="json-eval($.customer360.CustomerInfo.contactList)" name="contactList" scope="default" type="STRING"/>
+                <property expression="json-eval($.customer360.CustomerInfo.segmentList)" name="segmentList" scope="default" type="STRING"/>
+            </propertyGroup>
+            <log level="full">
+                <property expression="get-property('customerID')" name="customerID"/>
+                <property expression="get-property('addressList')" name="addressList"/>
+                <property expression="get-property('ContactList')" name="contactList"/>
+                <property expression="get-property('segmentList')" name="segmentList"/>
+                <property expression="get-property('jsonData')" name="Jyothi"/>
+            </log>
+            <clone id="Response">
+                <target>
+                    <sequence>
+                        <sequence key="addressList"/>
+                        <log level="custom">
+                            <property expression="json-eval($)" name="Log1"/>
+                        </log>
+                    </sequence>
+                </target>
+                <target>
+                    <sequence>
+                        <sequence key="contactList"/>
+                        <log level="custom">
+                            <property expression="json-eval($)" name="Log2"/>
+                        </log>
+                    </sequence>
+                </target>
+                <target>
+                    <sequence>
+                        <sequence key="segmentList"/>
+                        <log level="custom">
+                            <property expression="json-eval($)" name="Log3"/>
+                        </log>
+                    </sequence>
+                </target>
+            </clone>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
